@@ -60,6 +60,34 @@ DHCP — это протокол прикладного уровня, котор
 ![time](img/8.png)
 
 Задать статичные (заданные вручную, а не полученные от DHCP сервера) настройки ip, gw, dns (использовать публичный DNS серверы, например 1.1.1.1 или 8.8.8.8).
+
+Требуется открыть /etc/network/interfaces  файл снова и добавить строку dns-nameservers 8.8.8.8 сразу после линии шлюза.
+
+sudo nano /etc/network/interfaces
+
+auto lo eth0
+
+iface lo inet loopback
+
+iface eth0 inet static
+
+        address xxx.xxx.xxx.xxx(enter your ip here)
+
+        netmask xxx.xxx.xxx.xxx
+
+        gateway xxx.xxx.xxx.xxx(enter gateway ip here,usually the address of the router)
+
+        dns-nameservers 8.8.8.8
+
+![time](img/9.png)
+
 Перезагрузить виртуальную машину. Убедиться, что статичные сетевые настройки (ip, gw, dns) соответствуют заданным в предыдущем пункте.
-В отчёте опишите, что сделали для выполнения всех семи пунктов (можно как текстом, так и скриншотами).
+
 Успешно пропинговать удаленные хосты 1.1.1.1 и ya.ru и вставить в отчёт скрин с выводом команды.
+
+sudo apt-get install nmap
+Then you can check your entire network for all connected IP addresses by typing in the following:
+
+nmap -sP IP HERE
+
+![time](img/10.png)
