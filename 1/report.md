@@ -123,6 +123,51 @@ DHCP — это протокол прикладного уровня, котор
 ![time](img/16.png)
 
 - MCEDIT - ESC и подтвердить сохранение файла
+  
+![time](img/17.png)
+
+- VIM - :q! в строке
+
+![time](img/18.png)
+
+![time](img/19.png)
+
+- Vim allows you to quickly find text using the / (forward slash) and ? (question mark) commands. The :substitute command searches for a text pattern, and replaces it with a text string. There are many options, but these are what you probably want:
+
+- Nano To search for text, use the Ctrl + W key combination
+To start a search and replace, use Alt+R key combination
+
+- MCEDIT Edit > Find/Replace Command Text, enter "Word" in the "command text" field (and check the box), enter "word" in the "replace text" field, check the "in selection" box, and hit find.
+
+## Part 8. Установка и базовая настройка сервиса SSHD
+
+- Что такое SSH (Secure Shell) — сетевой протокол прикладного уровня, который позволяет управлять операционной системой и выполнять функцию туннелирования TCP-соединения. Работа SSH построена на взаимодействии 2-х компонентов: SSH-сервера и SSH-клиента.
+- 
+![time](img/20.png)
+
+- Установка в систему  sudo apt install openssh-server
+- Добавление в автозагрузку  sudo systemctl enable sshd
+- Удаление из автозагрузки  sudo systemctl disable sshd
+
+- Перенастроить службу SSHd на порт 2022.
+-  редактируем конфиг файл ssh sudo vi /etc/ssh/sshd_config Выставляем там нужный порт и перезагружаем систему  sudo systemctl restart ssh
+
+- Используя команду ps, показать наличие процесса sshd. Для этого к команде нужно подобрать ключи.
+- ps (processes status — статус процессов) — это встроенная утилита Unix/Linux для просмотра информации, касающейся выбора запущенных процессов в системе: она считывает эту информацию из виртуальных файлов в файловой системе /proc. Это одна из важных утилит для системного администрирования, особенно в рамках мониторинга процессов, чтобы помочь вам понять, что происходит в системе Linux. Добавление опции -e (выбрать все процессы) сделает так, что ps перечислит процессы, которые были запущены всеми пользователями, а не только пользователем, который запускает команду ps. вы можете направить вывод из ps через grep и найти нужные записи о процессах по любым строкам. Здесь мы ищем записи, соответствующие поисковому запросу «ssh»:
+
+ps -e | grep ssh
+![time](img/21.png)
+
+- Вывод команды netstat -tan должен содержать tcp 0 0 0.0.0.0:2022 0.0.0.0:* LISTEN  Скрин с выводом команды вставить в отчёт. В отчёте объяснить значение ключей -tan, значение каждого столбца вывода, значение 0.0.0.0.
+
+![time](img/22.png)
+
+- netstat это инструмент командной строки, который может предоставить информацию о сетевых подключениях 
+- t - Показать порты TCP.
+- n - Показать числовые адреса вместо разрешения хостов.
+- a - Отображение всех подключений и ожидающих портов.
+
+
 
 
 
