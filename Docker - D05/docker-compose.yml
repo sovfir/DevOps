@@ -1,0 +1,25 @@
+version: '3.7'
+
+# container_name - имя
+# build/image - либо билдим, либо используем образ
+# restart - условия при которых происходит перезапуск
+# links - указание на зависимость от контейнера
+# ports - указание портов
+# volumes - схожее с флагом -v при docker run
+
+services:
+  appserver:
+    container_name: appserver
+    build: ./Part5
+    restart: always
+    links:
+     - proxyserver
+
+  proxyserver:
+    container_name: proxyserver
+    image: nginx
+    restart: always
+    ports:
+      - 80:8080
+    volumes:
+      - ./proxyserver/nginx/:/etc/nginx/
